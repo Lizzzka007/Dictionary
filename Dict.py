@@ -143,17 +143,23 @@ def add_text_word(filename):
         json.dump(data, file)
 
 def show_text_word(filename):
-    wrd = WORD
+    # wrd = WORD
     with open(filename,"r", encoding = 'utf8') as read_file: 
         data = json.load(read_file)
     if len(data) != 0:
         for row in data:
-            setattr(wrd, 'word', row['WORD'])
-            setattr(wrd, 'reading', row['READING'])
-            setattr(wrd, 'translation', row['TRANSLATION'])
+            # setattr(wrd, 'word', row['WORD'])
+            # setattr(wrd, 'reading', row['READING'])
+            # setattr(wrd, 'translation', row['TRANSLATION'])
             # wrd.change(row['WORD'], row['READING'], row['TRANSLATION'])
-            # print(wrd)
-            print("{0.word}  {0.reading}  {0.translation}".format(wrd))
+            print(row['WORD'], end = '')
+            for i in range(10 - len(row['WORD'])):
+                print('  ', end = '')
+            print(row['READING'], end = '')
+            for i in range(10 - len(row['WORD'])):
+                print('  ', end = '')
+            print(row['TRANSLATION'] + ';')
+            # print("{0.word}  {0.reading}  {0.translation}".format(wrd))
     
 
 
