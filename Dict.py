@@ -1,5 +1,20 @@
 import json
 
+class WORD:
+    word = ''
+    reading = ''
+    translation = ''
+
+    def __init__(self):  
+        self.word = ''
+        self.reading = '' 
+        self.translation = ''
+
+    def change(self, word, reading, translation):
+        self.word = word  
+        self.reading = reading  
+        self.translation = translation
+
 def add_kanji(filename):
     with open(filename,"r", encoding = 'utf8') as read_file: 
         data = json.load(read_file)
@@ -128,11 +143,17 @@ def add_text_word(filename):
         json.dump(data, file)
 
 def show_text_word(filename):
+    wrd = WORD
     with open(filename,"r", encoding = 'utf8') as read_file: 
         data = json.load(read_file)
     if len(data) != 0:
         for row in data:
-            print(row['WORD'] + '     ' + row['READING'] + '     ' + row['TRANSLATION'] + ';')
+            setattr(wrd, 'word', row['WORD'])
+            setattr(wrd, 'reading', row['READING'])
+            setattr(wrd, 'translation', row['TRANSLATION'])
+            # wrd.change(row['WORD'], row['READING'], row['TRANSLATION'])
+            # print(wrd)
+            print("{0.word}  {0.reading}  {0.translation}".format(wrd))
     
 
 
