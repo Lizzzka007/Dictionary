@@ -104,6 +104,9 @@ def add_word(filename):
 def repeat_kanji(filename):
     with open(filename,"r", encoding = 'utf8') as read_file: 
         data = json.load(read_file)
+    print("All kanji:")
+    for kanji in data.keys():
+        print(kanji + ' ', end = '')
     print('Put a kanji to repeat')
     kanji = input()
     print("音読み:  ", end = ' ')
@@ -156,7 +159,7 @@ def show_text_word(filename):
             for i in range(10 - len(row['WORD'])):
                 print('  ', end = '')
             print(row['READING'], end = '')
-            for i in range(10 - len(row['WORD'])):
+            for i in range(10 - len(row['READING'])):
                 print('  ', end = '')
             print(row['TRANSLATION'] + ';')
             # print("{0.word}  {0.reading}  {0.translation}".format(wrd))
