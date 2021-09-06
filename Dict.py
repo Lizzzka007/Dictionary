@@ -40,7 +40,7 @@ def add_kanji(filename):
 
     print('Put translation:')
     input_word = input()
-    values[3].append(part)
+    values[3].append(input_word)
     
     param_mass_kotoba = ["WORD", "READING", "TRANSLATION"]
     values_kotoba = [[], [], []]
@@ -173,6 +173,9 @@ def show_text_word(filename):
 
 
 if __name__ == '__main__':
+    with open("data_file_old.json","r", encoding = 'utf8') as read_file: 
+        data = json.load(read_file)
+    print(data)
     print("What do yiu want, nigga:", "1.Add kanji", "2.Add word for kanji", "3.Repeat kanji", "4.Add word from text", "5.Show words from texts", "6.Exit", sep = '\n')
     command = int(input('Enter a command:'))
     while command != 6:
