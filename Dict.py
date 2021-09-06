@@ -108,6 +108,9 @@ def add_word(filename):
 def repeat_kanji(filename):
     with open(filename,"r", encoding = 'utf8') as read_file: 
         data = json.load(read_file)
+    print("All kanji:")
+    for kanji in data.keys():
+        print(kanji + ' ', end = '')
     print('Put a kanji to repeat')
     kanji = input()
     print("音読み:  ", end = ' ')
@@ -149,17 +152,23 @@ def add_text_word(filename):
         json.dump(data, file)
 
 def show_text_word(filename):
-    wrd = WORD
+    # wrd = WORD
     with open(filename,"r", encoding = 'utf8') as read_file: 
         data = json.load(read_file)
     if len(data) != 0:
         for row in data:
-            setattr(wrd, 'word', row['WORD'])
-            setattr(wrd, 'reading', row['READING'])
-            setattr(wrd, 'translation', row['TRANSLATION'])
+            # setattr(wrd, 'word', row['WORD'])
+            # setattr(wrd, 'reading', row['READING'])
+            # setattr(wrd, 'translation', row['TRANSLATION'])
             # wrd.change(row['WORD'], row['READING'], row['TRANSLATION'])
-            # print(wrd)
-            print("{0.word}  {0.reading}  {0.translation}".format(wrd))
+            print(row['WORD'], end = '')
+            for i in range(10 - len(row['WORD'])):
+                print('  ', end = '')
+            print(row['READING'], end = '')
+            for i in range(10 - len(row['READING'])):
+                print('  ', end = '')
+            print(row['TRANSLATION'] + ';')
+            # print("{0.word}  {0.reading}  {0.translation}".format(wrd))
     
 
 
