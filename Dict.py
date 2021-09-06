@@ -120,7 +120,7 @@ def repeat_kanji(filename):
     for i in data[kanji]['KUN']:
         print(i + ' ', end = ' ')
     print("\nTranslation:  ", end = ' ')
-    print(data[kanji]['TRANSLATION'])
+    print(data[kanji]['TRANSLATION'][0])
     print("言葉:")
     if len(data[kanji]['WORDS']) != 0:
         print(len(data[kanji]['WORDS']))
