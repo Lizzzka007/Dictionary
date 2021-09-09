@@ -214,14 +214,7 @@ def show_adverb(filename):
 
 
 if __name__ == '__main__':
-<<<<<<< HEAD
     print("What do yiu want, nigga:", "1.Add kanji", "2.Add word for kanji", "3.Repeat kanji", "4.Add word from text", "5.Show words from texts", "6.Add adverb", "7.Show adverbs","8.Exit", sep = '\n')
-=======
-    # with open("data_file_old.json","r", encoding = 'utf8') as read_file: 
-    #     data = json.load(read_file)
-    # print(data)
-    print("What do yiu want, nigga:", "1.Add kanji", "2.Add word for kanji", "3.Repeat kanji", "4.Add word from text", "5.Show words from texts", "6.Exit", sep = '\n')
->>>>>>> 7346f46a6a696b692d1a3dfec5d2bebd1476cc2d
     command = int(input('Enter a command:'))
     while command != 8:
         if(command == 1):
