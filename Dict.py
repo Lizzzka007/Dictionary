@@ -163,13 +163,54 @@ def show_text_word(filename):
                 print('  ', end = '')
             print(row['TRANSLATION'] + ';')
             # print("{0.word}  {0.reading}  {0.translation}".format(wrd))
+
+def add_adverb(filename):
+    with open(filename,"r", encoding = 'utf8') as read_file: 
+        data = json.load(read_file)
+    print('Put a word')
+    word_input = input()
+    count = 0
+    if len(data) != 0:
+        for row in data:
+            if word_input.split('.')[0] == row['WORD'][0]:
+                count = count + 1
+    if count == 0:
+        param_mass_kotoba = ["WORD", "READING", "TRANSLATION"]
+        values_kotoba = [[], [], []]
+        values_kotoba[0] = word_input.split('.')[0]
+        values_kotoba[1] = word_input.split('.')[1]
+        values_kotoba[2] = word_input.split('.')[2]
+        kotoba = dict(zip(param_mass_kotoba, values_kotoba))
+        data.append(kotoba)
+    
+    with open(filename, "w", encoding = "utf-8") as file:
+        json.dump(data, file)
+
+def show_adverb(filename):
+    # wrd = WORD
+    with open(filename,"r", encoding = 'utf8') as read_file: 
+        data = json.load(read_file)
+    if len(data) != 0:
+        for row in data:
+            # setattr(wrd, 'word', row['WORD'])
+            # setattr(wrd, 'reading', row['READING'])
+            # setattr(wrd, 'translation', row['TRANSLATION'])
+            # wrd.change(row['WORD'], row['READING'], row['TRANSLATION'])
+            print(row['WORD'], end = '')
+            for i in range(10 - len(row['WORD'])):
+                print('  ', end = '')
+            print(row['READING'], end = '')
+            for i in range(10 - len(row['READING'])):
+                print('  ', end = '')
+            print(row['TRANSLATION'] + ';')
+            # print("{0.word}  {0.reading}  {0.translation}".format(wrd))
     
 
 
 if __name__ == '__main__':
-    print("What do yiu want, nigga:", "1.Add kanji", "2.Add word for kanji", "3.Repeat kanji", "4.Add word from text", "5.Show words from texts", "6.Exit", sep = '\n')
+    print("What do yiu want, nigga:", "1.Add kanji", "2.Add word for kanji", "3.Repeat kanji", "4.Add word from text", "5.Show words from texts", "6.Add adverb", "7.Show adverbs","8.Exit", sep = '\n')
     command = int(input('Enter a command:'))
-    while command != 6:
+    while command != 8:
         if(command == 1):
             add_kanji("data_file.json")
         if(command == 2):
@@ -180,6 +221,10 @@ if __name__ == '__main__':
             add_text_word("words.json")
         if(command == 5):
             show_text_word("words.json")
+        if(command == 6):
+            add_text_word("adverbs.json")
+        if(command == 7):
+            show_text_word("adverbs.json")
         command = int(input('Enter a command:'))
     print('Bie, bitch\n')
 
