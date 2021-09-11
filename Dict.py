@@ -157,10 +157,6 @@ def show_text_word(filename):
         data = json.load(read_file)
     if len(data) != 0:
         for row in data:
-            # setattr(wrd, 'word', row['WORD'])
-            # setattr(wrd, 'reading', row['READING'])
-            # setattr(wrd, 'translation', row['TRANSLATION'])
-            # wrd.change(row['WORD'], row['READING'], row['TRANSLATION'])
             print(row['WORD'], end = '')
             for i in range(10 - len(row['WORD'])):
                 print('  ', end = '')
@@ -198,10 +194,6 @@ def show_adverb(filename):
         data = json.load(read_file)
     if len(data) != 0:
         for row in data:
-            # setattr(wrd, 'word', row['WORD'])
-            # setattr(wrd, 'reading', row['READING'])
-            # setattr(wrd, 'translation', row['TRANSLATION'])
-            # wrd.change(row['WORD'], row['READING'], row['TRANSLATION'])
             print(row['WORD'], end = '')
             for i in range(10 - len(row['WORD'])):
                 print('  ', end = '')
