@@ -40,7 +40,7 @@ def add_kanji(filename):
 
     print('Put translation:')
     input_word = input()
-    values[3].append(input_word)
+    values[3].append(input_word.lower())
     
     param_mass_kotoba = ["WORD", "READING", "TRANSLATION"]
     values_kotoba = [[], [], []]
@@ -50,7 +50,7 @@ def add_kanji(filename):
     while input_word != '4':
         values_kotoba[0] = input_word.split('.')[0]
         values_kotoba[1] = input_word.split('.')[1]
-        values_kotoba[2] = input_word.split('.')[2]
+        values_kotoba[2] = input_word.split('.')[2].lower()
         input_word = input()
 
     if len(values_kotoba[0]) != 0:
@@ -64,14 +64,15 @@ def add_kanji(filename):
             word = row['WORD']
             res = word.find(key_general)
             if res != -1:
-                if word not in values[2].keys():
-                    values_kotoba[0] = word
-                    values_kotoba[1] = data[kanji]['WORDS'][word]['READING']
-                    values_kotoba[2] = data[kanji]['WORDS'][word]['TRANSLATION']
-                    kotoba = dict(zip(param_mass_kotoba, values_kotoba))
-                    values[2].append(kotoba)
-                    kotoba = {}
-                    values_kotoba = [[], [], []]
+                if len(values[2]) != 0:
+                    if word not in values[2].keys():
+                        values_kotoba[0] = word
+                        values_kotoba[1] = data[kanji]['WORDS'][word]['READING']
+                        values_kotoba[2] = data[kanji]['WORDS'][word]['TRANSLATION']
+                        kotoba = dict(zip(param_mass_kotoba, values_kotoba))
+                        values[2].append(kotoba)
+                        kotoba = {}
+                        values_kotoba = [[], [], []]
 
     param_dict = dict(zip(param_mass, values))
     data[key_general] = param_dict
@@ -96,7 +97,7 @@ def add_word(filename):
                 values_kotoba = [[], [], []]
                 values_kotoba[0] = word_input.split('.')[0]
                 values_kotoba[1] = word_input.split('.')[1]
-                values_kotoba[2] = word_input.split('.')[2]
+                values_kotoba[2] = word_input.split('.')[2].lower()
                 kotoba = dict(zip(param_mass_kotoba, values_kotoba))
                 data[kanji]['WORDS'].append(kotoba)
                 print(data[kanji]['WORDS'])
@@ -111,7 +112,7 @@ def repeat_kanji(filename):
     print("All kanji:")
     for kanji in data.keys():
         print(kanji + ' ', end = '')
-    print('Put a kanji to repeat')
+    print('\nPut a kanji to repeat')
     kanji = input()
     print("音読み:  ", end = ' ')
     for i in data[kanji]['ON']:
@@ -144,7 +145,7 @@ def add_text_word(filename):
         values_kotoba = [[], [], []]
         values_kotoba[0] = word_input.split('.')[0]
         values_kotoba[1] = word_input.split('.')[1]
-        values_kotoba[2] = word_input.split('.')[2]
+        values_kotoba[2] = word_input.split('.')[2].lower()
         kotoba = dict(zip(param_mass_kotoba, values_kotoba))
         data.append(kotoba)
     
@@ -181,7 +182,7 @@ def add_adverb(filename):
         values_kotoba = [[], [], []]
         values_kotoba[0] = word_input.split('.')[0]
         values_kotoba[1] = word_input.split('.')[1]
-        values_kotoba[2] = word_input.split('.')[2]
+        values_kotoba[2] = word_input.split('.')[2].lower()
         kotoba = dict(zip(param_mass_kotoba, values_kotoba))
         data.append(kotoba)
     
