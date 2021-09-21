@@ -63,16 +63,27 @@ def add_kanji(filename):
         for row in data[kanji]['WORDS']:
             word = row['WORD']
             res = word.find(key_general)
+            # print(word + ' ' + str(res))
             if res != -1:
                 if len(values[2]) != 0:
-                    if word not in values[2].keys():
+                    # print('For ' + key_general + 'added')
+                    print(values[2])
+                    if word not in values[2][0]['WORD']:
                         values_kotoba[0] = word
-                        values_kotoba[1] = data[kanji]['WORDS'][word]['READING']
-                        values_kotoba[2] = data[kanji]['WORDS'][word]['TRANSLATION']
+                        values_kotoba[1] = row['READING']
+                        values_kotoba[2] = row['TRANSLATION']
                         kotoba = dict(zip(param_mass_kotoba, values_kotoba))
                         values[2].append(kotoba)
                         kotoba = {}
                         values_kotoba = [[], [], []]
+                else:
+                    values_kotoba[0] = word
+                    values_kotoba[1] = row['READING']
+                    values_kotoba[2] = row['TRANSLATION']
+                    kotoba = dict(zip(param_mass_kotoba, values_kotoba))
+                    values[2].append(kotoba)
+                    kotoba = {}
+                    values_kotoba = [[], [], []]
 
     param_dict = dict(zip(param_mass, values))
     data[key_general] = param_dict
@@ -100,6 +111,7 @@ def add_word(filename):
                 values_kotoba[2] = word_input.split('.')[2].lower()
                 kotoba = dict(zip(param_mass_kotoba, values_kotoba))
                 data[kanji]['WORDS'].append(kotoba)
+                print('For ' + kanji + ' added')
                 print(data[kanji]['WORDS'])
     
     with open(filename, "w", encoding = "utf-8") as file:
@@ -126,7 +138,6 @@ def repeat_kanji(filename):
     print(data[kanji]['TRANSLATION'][0])
     print("言葉:")
     if len(data[kanji]['WORDS']) != 0:
-        print(len(data[kanji]['WORDS']))
         i = 1
         for row in data[kanji]['WORDS']:
             print('    ' + str(i) + '.Word: ' + row['WORD'] + ', ' + 'reading: ' + row['READING'] + ', ' + 'translation: ' + row['TRANSLATION'] + '.')
