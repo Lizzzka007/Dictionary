@@ -221,9 +221,11 @@ def show_adverb(filename):
 
 
 if __name__ == '__main__':
-    print("What do yiu want, nigga:", "1.Add kanji", "2.Add word for kanji", "3.Repeat kanji", "4.Add word from text", "5.Show words from texts", "6.Add adverb", "7.Show adverbs","8.Exit", sep = '\n')
+    print("What do yiu want, nigga:", "1.Add kanji", "2.Add word for kanji", 
+    "3.Repeat kanji", "4.Add word from text", "5.Show words from texts", "6.Add adverb", 
+    "7.Show adverbs","8.Add expression", "9.Show expressions",  "10.Exit", sep = '\n')
     command = int(input('Enter a command:'))
-    while command != 8:
+    while command != 10:
         if(command == 1):
             add_kanji("data_file.json")
         if(command == 2):
@@ -238,6 +240,10 @@ if __name__ == '__main__':
             add_text_word("adverbs.json")
         if(command == 7):
             show_text_word("adverbs.json")
+        if(command == 8):
+            add_text_word("expressions.json")
+        if(command == 9):
+            show_text_word("expressions.json")
         command = int(input('Enter a command:'))
     print('Bie, bitch\n')
 
