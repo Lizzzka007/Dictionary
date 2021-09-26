@@ -112,7 +112,7 @@ def add_word(filename):
                 kotoba = dict(zip(param_mass_kotoba, values_kotoba))
                 data[kanji]['WORDS'].append(kotoba)
                 print('For ' + kanji + ' added')
-                print(data[kanji]['WORDS'])
+                # print(data[kanji]['WORDS'])
     
     with open(filename, "w", encoding = "utf-8") as file:
         json.dump(data, file)
