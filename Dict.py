@@ -101,7 +101,9 @@ def add_word(filename):
         res = word_input.split('.')[0].find(kanji)
         if res != -1:
             for row in data[kanji]['WORDS']:
-                if word_input.split('.')[0] == row['WORD'][0]:
+                # print(word_input.split('.')[0] + ' vs ' + row['WORD'])
+                if word_input.split('.')[0] == row['WORD']:
+                    # print('Yes')
                     count = count + 1
             if count == 0:
                 param_mass_kotoba = ["WORD", "READING", "TRANSLATION"]
@@ -124,7 +126,8 @@ def repeat_kanji(filename):
     print("All kanji:")
     k = 0
     for kanji in data.keys():
-        print(str(k) + '.' + kanji + ' ', end = ' ')
+        # print(str(k) + '.' + kanji + ' ', end = ' ')
+        print(str(k) + '.' + kanji)
         k = k + 1
     print('\nPut a kanji to repeat')
     kanji = input()
@@ -151,7 +154,7 @@ def add_text_word(filename):
     count = 0
     if len(data) != 0:
         for row in data:
-            if word_input.split('.')[0] == row['WORD'][0]:
+            if word_input.split('.')[0] == row['WORD']:
                 count = count + 1
     if count == 0:
         param_mass_kotoba = ["WORD", "READING", "TRANSLATION"]
@@ -189,7 +192,7 @@ def add_adverb(filename):
     count = 0
     if len(data) != 0:
         for row in data:
-            if word_input.split('.')[0] == row['WORD'][0]:
+            if word_input.split('.')[0] == row['WORD']:
                 count = count + 1
     if count == 0:
         param_mass_kotoba = ["WORD", "READING", "TRANSLATION"]
