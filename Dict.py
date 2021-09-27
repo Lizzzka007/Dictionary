@@ -1,4 +1,6 @@
 import json
+import random
+import keyboard
 
 class WORD:
     word = ''
@@ -220,15 +222,66 @@ def show_adverb(filename):
                 print('  ', end = '')
             print(row['TRANSLATION'] + ';')
             # print("{0.word}  {0.reading}  {0.translation}".format(wrd))
+
+def remem_kanji(filename):
+    with open(filename,"r", encoding = 'utf8') as read_file: 
+        data = json.load(read_file)
+    
+    kanjis = list(data.keys())
+    # print(kanjis)
+    random.shuffle(kanjis)
+    repeat = []
+    for kanji in kanjis:
+        while len(repeat) == 5:
+            random.shuffle(repeat)
+            for forgotten_kanji in repeat:
+                print(forgotten_kanji)
+                command = int(input('Put 1 if Ok, else 0: '))
+                if command == 1:
+                    repeat.remove(forgotten_kanji)
+                print("音読み:  ", end = ' ')
+                for i in data[kanji]['ON']:
+                    print(i + ' ', end = ' ')
+                print("\n訓読み:  ", end = ' ')
+                for i in data[kanji]['KUN']:
+                    print(i + ' ', end = ' ')
+                print("\nTranslation:  ", end = ' ')
+                print(data[kanji]['TRANSLATION'][0])
+                if len(data[kanji]['WORDS']) != 0:
+                    print("言葉:")
+                    i = 1
+                    for row in data[kanji]['WORDS']:
+                        print('    ' + str(i) + '.Word: ' + row['WORD'] + ', ' + 'reading: ' + row['READING'] + ', ' + 'translation: ' + row['TRANSLATION'] + '.')
+                        i = i + 1
+                print('-----------------------------------------------------------------------------------')
+        print(kanji)
+        command = int(input('Put 1 if Ok, else 0: '))
+        if command == 0:
+            repeat.append(kanji)
+        print("音読み:  ", end = ' ')
+        for i in data[kanji]['ON']:
+            print(i + ' ', end = ' ')
+        print("\n訓読み:  ", end = ' ')
+        for i in data[kanji]['KUN']:
+            print(i + ' ', end = ' ')
+        print("\nTranslation:  ", end = ' ')
+        print(data[kanji]['TRANSLATION'][0])
+        if len(data[kanji]['WORDS']) != 0:
+            print("言葉:")
+            i = 1
+            for row in data[kanji]['WORDS']:
+                print('    ' + str(i) + '.Word: ' + row['WORD'] + ', ' + 'reading: ' + row['READING'] + ', ' + 'translation: ' + row['TRANSLATION'] + '.')
+                i = i + 1
+        print('-----------------------------------------------------------------------------------')
     
 
 
 if __name__ == '__main__':
-    print("What do yiu want, nigga:", "1.Add kanji", "2.Add word for kanji", 
+    print("What do you want:", "1.Add kanji", "2.Add word for kanji", 
     "3.Repeat kanji", "4.Add word from text", "5.Show words from texts", "6.Add adverb", 
-    "7.Show adverbs","8.Add expression", "9.Show expressions",  "10.Exit", sep = '\n')
+    "7.Show adverbs","8.Add expression", "9.Show expressions", "10.Remember kanji", "11.Exit", sep = '\n')
     command = int(input('Enter a command:'))
-    while command != 10:
+    while command != 11:
         if(command == 1):
             add_kanji("data_file.json")
         if(command == 2):
@@ -247,6 +300,8 @@ if __name__ == '__main__':
             add_text_word("expressions.json")
         if(command == 9):
             show_text_word("expressions.json")
+        if(command == 10):
+            remem_kanji("data_file.json")
         command = int(input('Enter a command:'))
-    print('Bie, bitch\n')
+    print('Bie\n')
 
