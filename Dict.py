@@ -240,17 +240,17 @@ def remem_kanji(filename):
                 if command == 1:
                     repeat.remove(forgotten_kanji)
                 print("音読み:  ", end = ' ')
-                for i in data[kanji]['ON']:
+                for i in data[forgotten_kanji]['ON']:
                     print(i + ' ', end = ' ')
                 print("\n訓読み:  ", end = ' ')
-                for i in data[kanji]['KUN']:
+                for i in data[forgotten_kanji]['KUN']:
                     print(i + ' ', end = ' ')
                 print("\nTranslation:  ", end = ' ')
-                print(data[kanji]['TRANSLATION'][0])
-                if len(data[kanji]['WORDS']) != 0:
+                print(data[forgotten_kanji]['TRANSLATION'][0])
+                if len(data[forgotten_kanji]['WORDS']) != 0:
                     print("言葉:")
                     i = 1
-                    for row in data[kanji]['WORDS']:
+                    for row in data[forgotten_kanji]['WORDS']:
                         print('    ' + str(i) + '.Word: ' + row['WORD'] + ', ' + 'reading: ' + row['READING'] + ', ' + 'translation: ' + row['TRANSLATION'] + '.')
                         i = i + 1
                 print('-----------------------------------------------------------------------------------')
