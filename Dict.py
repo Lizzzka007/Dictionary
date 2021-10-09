@@ -145,7 +145,7 @@ def repeat_kanji(filename):
     if len(data[kanji]['WORDS']) != 0:
         i = 1
         for row in data[kanji]['WORDS']:
-            print('    ' + str(i) + '.Word: ' + row['WORD'] + ', ' + 'reading: ' + row['READING'] + ', ' + 'translation: ' + row['TRANSLATION'] + '.')
+            print('    ' + str(i) + row['WORD'] + '\t' + row['READING'] + '\t' + row['TRANSLATION'] + '.')
             i = i + 1
 
 def add_text_word(filename):
@@ -176,15 +176,8 @@ def show_text_word(filename):
         data = json.load(read_file)
     if len(data) != 0:
         for row in data:
-            print(str(k) + '. ' + row['WORD'], end = '')
-            for i in range(10 - len(row['WORD'])):
-                print('  ', end = '')
-            print(row['READING'], end = '')
-            for i in range(10 - len(row['READING'])):
-                print('  ', end = '')
-            print(row['TRANSLATION'] + ';\n')
+            print(str(k) + '. ' + row['WORD'] + '\t\t' + row['READING'] + '\t\t' + row['TRANSLATION'])
             k = k + 1
-            # print("{0.word}  {0.reading}  {0.translation}".format(wrd))
 
 def add_adverb(filename):
     with open(filename,"r", encoding = 'utf8') as read_file: 
@@ -212,16 +205,11 @@ def show_adverb(filename):
     # wrd = WORD
     with open(filename,"r", encoding = 'utf8') as read_file: 
         data = json.load(read_file)
+    k = 0
     if len(data) != 0:
         for row in data:
-            print(row['WORD'], end = '')
-            for i in range(10 - len(row['WORD'])):
-                print('  ', end = '')
-            print(row['READING'], end = '')
-            for i in range(10 - len(row['READING'])):
-                print('  ', end = '')
-            print(row['TRANSLATION'] + ';')
-            # print("{0.word}  {0.reading}  {0.translation}".format(wrd))
+            print(str(k) + '. ' + row['WORD'] + '\t' + row['READING'] + '\t' + row['TRANSLATION'])
+            k += 1
 
 def remem_kanji(filename):
     with open(filename,"r", encoding = 'utf8') as read_file: 
@@ -251,7 +239,7 @@ def remem_kanji(filename):
                     print("言葉:")
                     i = 1
                     for row in data[forgotten_kanji]['WORDS']:
-                        print('    ' + str(i) + '.Word: ' + row['WORD'] + ', ' + 'reading: ' + row['READING'] + ', ' + 'translation: ' + row['TRANSLATION'] + '.')
+                        print('    ' + str(i) + '. ' + row['WORD'] + '\t' + row['READING'] + '\t' + row['TRANSLATION'] + '.')
                         i = i + 1
                 print('-----------------------------------------------------------------------------------')
         print(kanji)
@@ -270,7 +258,7 @@ def remem_kanji(filename):
             print("言葉:")
             i = 1
             for row in data[kanji]['WORDS']:
-                print('    ' + str(i) + '.Word: ' + row['WORD'] + ', ' + 'reading: ' + row['READING'] + ', ' + 'translation: ' + row['TRANSLATION'] + '.')
+                print('    ' + str(i) + '. ' + row['WORD'] + '\t' + row['READING'] + '\t' + row['TRANSLATION'] + '.')
                 i = i + 1
         print('-----------------------------------------------------------------------------------')
     
